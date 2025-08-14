@@ -4664,6 +4664,120 @@ static void mavlink_test_esc_telemetry_29_to_32(uint8_t system_id, uint8_t compo
 #endif
 }
 
+static void mavlink_test_yacht_hud(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_YACHT_HUD >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_yacht_hud_t packet_in = {
+        963497464,17443,17547,17651,17755,17859,17963,18067,18171,18275,18379,18483,18587,18691,18795,18899,19003,19107,19211,19315,19419,19523,19627,19731,19835,19939,20043,20147,20251,20355,20459,20563,20667,20771,20875,20979,21083,21187,21291,21395,21499,21603,21707,21811,21915,22019,22123,22227,22331,22435,22539,22643,22747,22851,22955,23059
+    };
+    mavlink_yacht_hud_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.time_boot_ms = packet_in.time_boot_ms;
+        packet1.roll = packet_in.roll;
+        packet1.pitch = packet_in.pitch;
+        packet1.heading = packet_in.heading;
+        packet1.heading_sp = packet_in.heading_sp;
+        packet1.yawspeed = packet_in.yawspeed;
+        packet1.yawspeed_sp = packet_in.yawspeed_sp;
+        packet1.RTKYaw = packet_in.RTKYaw;
+        packet1.magYaw = packet_in.magYaw;
+        packet1.course = packet_in.course;
+        packet1.speed = packet_in.speed;
+        packet1.vx = packet_in.vx;
+        packet1.vy = packet_in.vy;
+        packet1.vx_sp = packet_in.vx_sp;
+        packet1.vy_sp = packet_in.vy_sp;
+        packet1.vin1 = packet_in.vin1;
+        packet1.pout1 = packet_in.pout1;
+        packet1.iout1 = packet_in.iout1;
+        packet1.rpm1 = packet_in.rpm1;
+        packet1.motortemp1 = packet_in.motortemp1;
+        packet1.vin2 = packet_in.vin2;
+        packet1.pout2 = packet_in.pout2;
+        packet1.iout2 = packet_in.iout2;
+        packet1.rpm2 = packet_in.rpm2;
+        packet1.motortemp2 = packet_in.motortemp2;
+        packet1.vin3 = packet_in.vin3;
+        packet1.pout3 = packet_in.pout3;
+        packet1.iout3 = packet_in.iout3;
+        packet1.rpm3 = packet_in.rpm3;
+        packet1.motortemp3 = packet_in.motortemp3;
+        packet1.vin4 = packet_in.vin4;
+        packet1.pout4 = packet_in.pout4;
+        packet1.iout4 = packet_in.iout4;
+        packet1.rpm4 = packet_in.rpm4;
+        packet1.motortemp4 = packet_in.motortemp4;
+        packet1.vin5 = packet_in.vin5;
+        packet1.pout5 = packet_in.pout5;
+        packet1.iout5 = packet_in.iout5;
+        packet1.rpm5 = packet_in.rpm5;
+        packet1.motortemp5 = packet_in.motortemp5;
+        packet1.vin6 = packet_in.vin6;
+        packet1.pout6 = packet_in.pout6;
+        packet1.iout6 = packet_in.iout6;
+        packet1.rpm6 = packet_in.rpm6;
+        packet1.motortemp6 = packet_in.motortemp6;
+        packet1.angleLeft = packet_in.angleLeft;
+        packet1.angleRight = packet_in.angleRight;
+        packet1.angleLeftSP = packet_in.angleLeftSP;
+        packet1.angleRightSP = packet_in.angleRightSP;
+        packet1.imuTemp = packet_in.imuTemp;
+        packet1.pilotThrottle = packet_in.pilotThrottle;
+        packet1.pilotRotation = packet_in.pilotRotation;
+        packet1.pilotLateral = packet_in.pilotLateral;
+        packet1.pilotPitch = packet_in.pilotPitch;
+        packet1.outThrottleLeft = packet_in.outThrottleLeft;
+        packet1.outThrottleRight = packet_in.outThrottleRight;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_YACHT_HUD_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_YACHT_HUD_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_yacht_hud_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_yacht_hud_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_yacht_hud_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.roll , packet1.pitch , packet1.heading , packet1.heading_sp , packet1.yawspeed , packet1.yawspeed_sp , packet1.RTKYaw , packet1.magYaw , packet1.course , packet1.speed , packet1.vx , packet1.vy , packet1.vx_sp , packet1.vy_sp , packet1.vin1 , packet1.pout1 , packet1.iout1 , packet1.rpm1 , packet1.motortemp1 , packet1.vin2 , packet1.pout2 , packet1.iout2 , packet1.rpm2 , packet1.motortemp2 , packet1.vin3 , packet1.pout3 , packet1.iout3 , packet1.rpm3 , packet1.motortemp3 , packet1.vin4 , packet1.pout4 , packet1.iout4 , packet1.rpm4 , packet1.motortemp4 , packet1.vin5 , packet1.pout5 , packet1.iout5 , packet1.rpm5 , packet1.motortemp5 , packet1.vin6 , packet1.pout6 , packet1.iout6 , packet1.rpm6 , packet1.motortemp6 , packet1.angleLeft , packet1.angleRight , packet1.angleLeftSP , packet1.angleRightSP , packet1.imuTemp , packet1.pilotThrottle , packet1.pilotRotation , packet1.pilotLateral , packet1.pilotPitch , packet1.outThrottleLeft , packet1.outThrottleRight );
+    mavlink_msg_yacht_hud_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_yacht_hud_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.roll , packet1.pitch , packet1.heading , packet1.heading_sp , packet1.yawspeed , packet1.yawspeed_sp , packet1.RTKYaw , packet1.magYaw , packet1.course , packet1.speed , packet1.vx , packet1.vy , packet1.vx_sp , packet1.vy_sp , packet1.vin1 , packet1.pout1 , packet1.iout1 , packet1.rpm1 , packet1.motortemp1 , packet1.vin2 , packet1.pout2 , packet1.iout2 , packet1.rpm2 , packet1.motortemp2 , packet1.vin3 , packet1.pout3 , packet1.iout3 , packet1.rpm3 , packet1.motortemp3 , packet1.vin4 , packet1.pout4 , packet1.iout4 , packet1.rpm4 , packet1.motortemp4 , packet1.vin5 , packet1.pout5 , packet1.iout5 , packet1.rpm5 , packet1.motortemp5 , packet1.vin6 , packet1.pout6 , packet1.iout6 , packet1.rpm6 , packet1.motortemp6 , packet1.angleLeft , packet1.angleRight , packet1.angleLeftSP , packet1.angleRightSP , packet1.imuTemp , packet1.pilotThrottle , packet1.pilotRotation , packet1.pilotLateral , packet1.pilotPitch , packet1.outThrottleLeft , packet1.outThrottleRight );
+    mavlink_msg_yacht_hud_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_yacht_hud_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_yacht_hud_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.roll , packet1.pitch , packet1.heading , packet1.heading_sp , packet1.yawspeed , packet1.yawspeed_sp , packet1.RTKYaw , packet1.magYaw , packet1.course , packet1.speed , packet1.vx , packet1.vy , packet1.vx_sp , packet1.vy_sp , packet1.vin1 , packet1.pout1 , packet1.iout1 , packet1.rpm1 , packet1.motortemp1 , packet1.vin2 , packet1.pout2 , packet1.iout2 , packet1.rpm2 , packet1.motortemp2 , packet1.vin3 , packet1.pout3 , packet1.iout3 , packet1.rpm3 , packet1.motortemp3 , packet1.vin4 , packet1.pout4 , packet1.iout4 , packet1.rpm4 , packet1.motortemp4 , packet1.vin5 , packet1.pout5 , packet1.iout5 , packet1.rpm5 , packet1.motortemp5 , packet1.vin6 , packet1.pout6 , packet1.iout6 , packet1.rpm6 , packet1.motortemp6 , packet1.angleLeft , packet1.angleRight , packet1.angleLeftSP , packet1.angleRightSP , packet1.imuTemp , packet1.pilotThrottle , packet1.pilotRotation , packet1.pilotLateral , packet1.pilotPitch , packet1.outThrottleLeft , packet1.outThrottleRight );
+    mavlink_msg_yacht_hud_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("YACHT_HUD") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_YACHT_HUD) != NULL);
+#endif
+}
+
 static void mavlink_test_ardupilotmega(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_sensor_offsets(system_id, component_id, last_msg);
@@ -4738,6 +4852,7 @@ static void mavlink_test_ardupilotmega(uint8_t system_id, uint8_t component_id, 
     mavlink_test_esc_telemetry_21_to_24(system_id, component_id, last_msg);
     mavlink_test_esc_telemetry_25_to_28(system_id, component_id, last_msg);
     mavlink_test_esc_telemetry_29_to_32(system_id, component_id, last_msg);
+    mavlink_test_yacht_hud(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
